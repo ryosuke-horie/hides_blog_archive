@@ -1,7 +1,13 @@
 # 環境変数ファイル
 .env
 
-# クロール結果
+# ミラーリング結果（大容量のため）
+test_mirror/
+production_mirror/
+static_site/
+
+# アーカイブ（旧方式）
+archive/crawls/
 crawls/
 tmp/
 
