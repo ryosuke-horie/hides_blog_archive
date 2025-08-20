@@ -1,0 +1,58 @@
+# browsertrix-crawler 設定ファイル
+# https://hidemiyoshi.jp/blog/ のアーカイブ用設定
+# 総記事数: 約440記事、45ページ
+
+seeds:
+  - url: https://hidemiyoshi.jp/blog/
+    depth: 50  # 45ページ + 余裕を持たせる
+
+# スコープ設定
+scopeType: prefix
+scopeIncludePrefix:
+  - https://hidemiyoshi.jp/blog/
+
+# 除外パターン（調査で確認済み）
+exclude:
+  - .*\/wp-admin\/.*
+  - .*\/wp-login\.php
+  - .*\/feed\/.*
+  - .*\/xmlrpc\.php
+  - .*\?s=.*
+  - .*\/wp-json\/.*
+  - .*\/trackback\/.*
+  - .*#comment.*
+  - .*#respond.*
+  - .*\/wp-cron\.php
+  - .*\?replytocom=.*
+
+# ブラウザ設定
+userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+lang: ja-JP
+
+# ビューポート設定
+screencastPort: 9037
+viewport:
+  width: 1920
+  height: 1080
+
+# パフォーマンス設定
+workers: 2
+pageLoadTimeout: 90
+pageExtraDelay: 2
+scrollDelay: 1
+
+# ビヘイビア設定
+behaviors:
+  - autoscroll
+  - autoplay
+
+behaviorTimeout: 60
+
+# 出力設定
+generateWACZ: true
+text: true
+screenshot: fullPage
+
+# クロール制限
+limit: 0
+maxPageLimit: 0
