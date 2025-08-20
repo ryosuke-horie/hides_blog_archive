@@ -4,7 +4,12 @@ WordPressブログ（https://hidemiyoshi.jp/blog/）の完全アーカイブシ�
 
 ## 概要
 
-このプロジェクトは、WordPressブログを静的なWACZ形式でアーカイブし、ReplayWeb.pageを使用してオフライン閲覧可能な形で保存・公開するシステムです。
+このプロジェクトは、WordPressブログを完全に静的なHTMLサイトとしてミラーリングし、オリジナルサイトと同じ見た目で表示できるようにするシステムです。
+
+### 2つのアプローチ
+
+1. **静的HTMLミラーリング（推奨）** - オリジナルと同じ見た目で直接表示
+2. **WACZアーカイブ** - ReplayWeb.pageを使用したアーカイブビューア
 
 ## 技術スタック
 
@@ -14,6 +19,36 @@ WordPressブログ（https://hidemiyoshi.jp/blog/）の完全アーカイブシ�
 - **ホスティング**: Cloudflare Pages
 
 ## クイックスタート
+
+### 方法1: 静的HTMLサイトとしてミラーリング（推奨）
+
+完全な静的サイトとして、オリジナルと同じ見た目で表示します。
+
+#### テストミラーリング（5ページ）
+```bash
+# テスト用に数ページだけミラーリング
+./scripts/test_mirror.sh
+
+# ローカルで確認
+cd test_mirror/blog
+python3 -m http.server 8000
+# http://localhost:8000 でアクセス
+```
+
+#### 本番ミラーリング（全440記事）
+```bash
+# 完全なミラーリングを実行
+./scripts/static_site_generator.sh
+# オプション2（完全版）を選択
+
+# ローカルで確認
+cd static_site/blog
+python3 -m http.server 8000
+```
+
+### 方法2: WACZアーカイブ形式
+
+ReplayWeb.pageビューアを使用したアーカイブ形式です。
 
 ### 前提条件
 
