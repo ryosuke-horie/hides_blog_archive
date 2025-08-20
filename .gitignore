@@ -1,35 +1,4 @@
 # 環境変数ファイル
 .env
 
-# ミラーリング結果（大容量のため）
-test_mirror/
-production_mirror/
-static_site/
-
-# アーカイブ（旧方式）
-archive/crawls/
-crawls/
-tmp/
-
-# OS関連
-.DS_Store
-Thumbs.db
-
-# エディタ関連
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# ログファイル
-*.log
-
-# WARC/WACZファイル（大容量のため）
-*.warc
-*.warc.gz
-*.wacz
-
-# バックアップ
-*.bak
-*.backup
+archive/
