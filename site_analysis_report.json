@@ -1,0 +1,56 @@
+{
+  "timestamp": "2025-08-20 16:03:34",
+  "base_url": "https://hidemiyoshi.jp/blog/",
+  "sitemap": null,
+  "pagination": {
+    "固定ページ 2": "https://hidemiyoshi.jp/blog/page/2",
+    "固定ページ 3": "https://hidemiyoshi.jp/blog/page/3",
+    "固定ページ 45": "https://hidemiyoshi.jp/blog/page/45"
+  },
+  "article_count_estimate": 35,
+  "sample_urls": [
+    "https://hidemiyoshi.jp/blog/2025/07/%e5%a4%a7%e4%bc%9a%e5%87%ba%e5%a0%b4%e8%80%85%e3%81%8c%e6%b4%bb%e8%ba%8d%e3%81%97%e3%81%a6%e3%81%84%e3%81%be%e3%81%99%e3%80%82%e5%87%ba%e5%a0%b4%e3%81%99%e3%82%8b%e3%81%a0%e3%81%91%e3%81%a7%e3%82%82.html",
+    "https://hidemiyoshi.jp/blog/2025/08/%e4%b9%85%e3%80%85%e3%83%88%e3%83%ac%e3%83%93%e3%83%a5%e3%83%ac%e3%83%bc%e3%83%88%e3%80%82hides%e3%81%aemma%e3%81%af%e3%81%93%e3%81%93%e3%81%8b%e3%82%89%e5%a7%8b%e3%81%be%e3%81%a3%e3%81%9f%e6%80%9d.html",
+    "https://hidemiyoshi.jp/blog/page/45",
+    "https://hidemiyoshi.jp/blog/2025/07/%e5%a4%a7%e4%bc%9a%e5%87%ba%e5%a0%b4%e8%80%85%e3%81%8c%e6%b4%bb%e8%ba%8d%e3%81%97%e3%81%a6%e3%81%84%e3%81%be%e3%81%99%e3%80%82%e5%87%ba%e5%a0%b4%e3%81%99%e3%82%8b%e3%81%a0%e3%81%91%e3%81%a7%e3%82%82.html#respond",
+    "https://hidemiyoshi.jp/blog/2025/07/14"
+  ],
+  "resources": {
+    "internal": {
+      "css": [
+        "https://hidemiyoshi.jp/blog/wp-content/themes/colibri-wp/style.css?ver=1.0.80",
+        "https://hidemiyoshi.jp/blog/wp-includes/css/dist/block-library/style.min.css?ver=5.9.11"
+      ],
+      "js": [
+        "https://hidemiyoshi.jp/blog/wp-includes/js/imagesloaded.min.js?ver=4.1.4",
+        "https://hidemiyoshi.jp/blog/wp-content/themes/colibri-wp/resources/theme/theme.js?ver=1.0.80",
+        "https://hidemiyoshi.jp/blog/wp-includes/js/jquery/ui/effect-slide.min.js?ver=1.13.1",
+        "https://hidemiyoshi.jp/blog/wp-includes/js/jquery/ui/effect.min.js?ver=1.13.1",
+        "https://hidemiyoshi.jp/blog/wp-includes/js/masonry.min.js?ver=4.2.2"
+      ],
+      "wp_uploads": [
+        "https://hidemiyoshi.jp/blog/wp-content/uploads/2025/08/GydmFRtaEAAjHbf.jpg",
+        "http://hidemiyoshi.jp/blog/wp-content/uploads/2020/09/blog1.png",
+        "https://hidemiyoshi.jp/blog/wp-content/uploads/2025/07/IMG_1229-scaled.jpg",
+        "https://hidemiyoshi.jp/blog/wp-content/uploads/2025/07/IMG_1491-scaled.jpg",
+        "https://hidemiyoshi.jp/blog/wp-content/uploads/2020/09/cropped-blog1.png"
+      ],
+      "images": []
+    },
+    "external": {
+      "css": [
+        "https://fonts.googleapis.com/css?family=Open+Sans%3A300%2C400%2C600%2C700%7CMuli%3A300%2C300italic%2C400%2C400italic%2C600%2C600italic%2C700%2C700italic%2C900%2C900italic&subset=latin%2Clatin-ext&display=swap&ver=1.0.80"
+      ],
+      "js": [
+        "https://cdn.jsdelivr.net/wp/wp-slimstat/tags/4.8.8.1/wp-slimstat.min.js"
+      ],
+      "images": [],
+      "embed": [
+        "https://www.googletagmanager.com/ns.html?id=GTM-KTPXLT4"
+      ]
+    }
+  },
+  "excluded_patterns_found": [
+    "#respond"
+  ]
+}

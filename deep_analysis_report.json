@@ -1,0 +1,25 @@
+{
+  "pagination_analysis": {
+    "total_pages": 45,
+    "articles_on_last_page": 0,
+    "estimated_total_articles": 440,
+    "excluded_links_found": 0
+  },
+  "resource_analysis": {
+    "jquery_found": true,
+    "jquery_scripts": [
+      "https://hidemiyoshi.jp/blog/wp-includes/js/jquery/jquery.min.js?ver=3.6.0",
+      "https://hidemiyoshi.jp/blog/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2",
+      "https://hidemiyoshi.jp/blog/wp-includes/js/jquery/ui/effect.min.js?ver=1.13.1"
+    ],
+    "wp_theme_resources": 2,
+    "wp_plugin_resources": 0,
+    "wp_core_resources": 6,
+    "external_embeds": [
+      {
+        "type": "Other",
+        "url": "https://www.googletagmanager.com/ns.html?id=GTM-KTPXLT4"
+      }
+    ]
+  }
+}
