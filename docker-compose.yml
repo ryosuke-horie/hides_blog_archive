@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  crawler:
+    build: .
+    container_name: hides_blog_crawler
+    volumes:
+      # クロール結果の出力ディレクトリ
+      - ./crawls:/crawls
+      # 設定ファイルのマウント
+      - ./config:/config
+      # 一時ファイル用
+      - ./tmp:/tmp
+    environment:
+      # メモリ制限設定
+      - CRAWL_MEMORY_LIMIT=${CRAWL_MEMORY_LIMIT:-2000}
+      # ワーカー数
+      - WORKERS=${WORKERS:-2}
+      # ページロードタイムアウト
+      - PAGE_TIMEOUT=${PAGE_TIMEOUT:-90}
+      # ネットワークアイドル待機時間
+      - NETWORK_IDLE_WAIT=${NETWORK_IDLE_WAIT:-2000}
+    command: >
+      --url ${TARGET_URL:-https://hidemiyoshi.jp/blog/}
+      --collection ${COLLECTION_NAME:-hides_blog}
+      --generateWACZ
+      --text
+      --screenshot fullPage
+      --screencastPort 9037
+      --workers ${WORKERS:-2}
+      --crawlTimeout ${CRAWL_TIMEOUT:-0}
+      --scopeType prefix
+      --exclude '(.*\/wp-admin\/.*)|(.*\/wp-login\.php)|(.*\/feed\/.*)|(.*\/xmlrpc\.php)|(.*\?s=.*)|(.*#respond.*)|(.*#comment.*)|(.*\/wp-json\/.*)|(.*\/trackback\/.*)|(.*\/wp-cron\.php)|(.*\?replytocom=.*)'
+      --pageLoadTimeout ${PAGE_TIMEOUT:-90}
+      --pageExtraDelay ${PAGE_EXTRA_DELAY:-2}
+      --scrollDelay ${SCROLL_DELAY:-1}
+      --userAgent 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+      --lang ja-JP
+      --behaviors autoscroll,autoplay
+      --behaviorTimeout ${BEHAVIOR_TIMEOUT:-60}
+      --limit ${CRAWL_LIMIT:-0}
+      --maxPageLimit ${MAX_PAGE_LIMIT:-0}
+    networks:
+      - crawler_network
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: '2'
+    shm_size: 1g
+
+networks:
+  crawler_network:
+    driver: bridge
