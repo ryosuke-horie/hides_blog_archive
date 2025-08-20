@@ -13,8 +13,8 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# crawlerユーザーに戻す
-USER crawler
+# crawlerユーザーに戻す（browsertrix-crawlerのデフォルトユーザー）
+USER 33
 
 # デフォルトのエントリーポイントを使用
 ENTRYPOINT ["crawl"]

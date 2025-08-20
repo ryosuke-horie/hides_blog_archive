@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  crawler-test:
+    build: .
+    container_name: hides_blog_crawler_test
+    volumes:
+      - ./crawls:/crawls
+      - ./config:/config
+      - ./tmp:/tmp
+    environment:
+      - CRAWL_MEMORY_LIMIT=1000
+      - WORKERS=1
+      - PAGE_TIMEOUT=30
+      - CRAWL_LIMIT=10
+      - MAX_PAGE_LIMIT=10
+    command: >
+      --url https://hidemiyoshi.jp/blog/
+      --collection test_hides_blog
+      --generateWACZ
+      --limit 10
+      --workers 1
+      --scopeType prefix
+      --exclude '(.*#respond.*)|(.*#comment.*)|(.*\/wp-admin\/.*)|(.*\/feed\/.*)'
+      --behaviors autoscroll
+      --screenshot fullPage
+      --text
+    networks:
+      - crawler_network
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1'
+    shm_size: 512m
+
+networks:
+  crawler_network:
+    driver: bridge
