@@ -1,0 +1,62 @@
+# 本番クロール設定
+# 440記事フルクロール用
+# 作成日: 2025-08-20
+
+seeds:
+  - url: https://hidemiyoshi.jp/blog/
+    depth: 50  # 45ページ + 余裕
+
+# スコープ設定
+scopeType: prefix
+scopeIncludePrefix:
+  - https://hidemiyoshi.jp/blog/
+
+# 除外パターン
+exclude:
+  - .*\/wp-admin\/.*
+  - .*\/wp-login\.php
+  - .*\/wp-cron\.php
+  - .*\/feed\/.*
+  - .*\/xmlrpc\.php
+  - .*\/wp-json\/.*
+  - .*#comment.*
+  - .*#respond.*
+  - .*\/trackback\/.*
+  - .*\?replytocom=.*
+  - .*\?s=.*
+  - .*&preview=.*
+
+# クロール設定
+workers: 2  # 並列実行
+pageLoadTimeout: 90000
+pageExtraDelay: 2000
+waitUntil: networkidle2
+networkIdleWait: 2000
+
+# ビヘイビア
+behaviors:
+  - autoscroll
+  - autoplay
+behaviorTimeout: 60000
+scrollDelay: 1000
+
+# ブラウザ設定
+userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+lang: ja-JP
+
+# 出力設定
+generateWACZ: true
+combineWARC: true
+text: true
+screenshot: fullPage
+screenshotDelay: 2000
+
+# 制限なし（全ページ取得）
+limit: 0
+maxPageLimit: 0
+
+# メタデータ
+metadata:
+  operator: "hides blog archiver"
+  description: "Full archive of https://hidemiyoshi.jp/blog/"
+  created: "2025-08-20"
