@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hides Blog Archive - ヒデスブログアーカイブ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            color: #667eea;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+        
+        .main-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .loading-container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        #replay-container {
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+        
+        .info-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .info-box h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .info-box p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .error-message {
+            background: #ff6b6b;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+            display: none;
+        }
+        
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div>
+                <h1>Hides Blog Archive</h1>
+                <div class="subtitle">ヒデスブログアーカイブ - 完全保存版</div>
+            </div>
+            <div class="nav-links">
+                <a href="https://note.com/hidemiyoshi" target="_blank">Note（新ブログ）</a>
+                <a href="#about">このアーカイブについて</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-container">
+        <div class="loading-container" id="loading">
+            <div class="spinner"></div>
+            <div class="loading-text">アーカイブを読み込み中...</div>
+        </div>
+        
+        <div id="replay-container"></div>
+        
+        <div class="error-message" id="error">
+            <h3>エラーが発生しました</h3>
+            <p id="error-text"></p>
+        </div>
+    </div>
+    
+    <div class="info-box" id="about" style="display:none;">
+        <h2>このアーカイブについて</h2>
+        <p>
+            このサイトは、https://hidemiyoshi.jp/blog/ の完全アーカイブです。<br>
+            過去の記事、画像、スタイルを当時のまま保存し、オフラインでも閲覧可能な形式で提供しています。
+        </p>
+        <p style="margin-top: 15px;">
+            <strong>アーカイブ作成日:</strong> 2025年8月20日<br>
+            <strong>記事数:</strong> 約440記事<br>
+            <strong>技術:</strong> WACZ形式 + ReplayWeb.page
+        </p>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 Hides Blog Archive | <a href="https://github.com/ryosuke-horie/hides_blog_archive" target="_blank">GitHub</a></p>
+    </div>
+    
+    <!-- ReplayWeb.page UI -->
+    <script src="https://cdn.jsdelivr.net/npm/replaywebpage@1.8.15/ui.js"></script>
+    
+    <script>
+        // WACZファイルのパス（実際のデプロイ時に調整）
+        const waczUrl = './archives/hides_blog_full.wacz';
+        
+        // ReplayWeb.pageの初期化
+        window.addEventListener('load', async () => {
+            const loadingEl = document.getElementById('loading');
+            const replayContainer = document.getElementById('replay-container');
+            const errorEl = document.getElementById('error');
+            const errorTextEl = document.getElementById('error-text');
+            
+            try {
+                // ReplayWeb.pageの設定
+                const config = {
+                    source: waczUrl,
+                    embed: 'full',
+                    showSettings: true,
+                    showAbout: true,
+                    swError: (err) => {
+                        console.error('Service Worker Error:', err);
+                        showError('Service Workerの初期化に失敗しました。');
+                    }
+                };
+                
+                // WACZファイルの存在確認
+                const response = await fetch(waczUrl, { method: 'HEAD' });
+                if (!response.ok) {
+                    throw new Error('WACZファイルが見つかりません');
+                }
+                
+                // ReplayWeb UIの初期化
+                loadingEl.style.display = 'none';
+                replayContainer.style.display = 'block';
+                
+                // replay-web-pageコンポーネントを作成
+                const replayEl = document.createElement('replay-web-page');
+                replayEl.setAttribute('source', waczUrl);
+                replayEl.setAttribute('embed', 'full');
+                replayEl.style.width = '100%';
+                replayEl.style.height = '100vh';
+                
+                replayContainer.appendChild(replayEl);
+                
+                // aboutセクションを表示
+                document.getElementById('about').style.display = 'block';
+                
+            } catch (error) {
+                console.error('初期化エラー:', error);
+                showError(error.message);
+            }
+        });
+        
+        function showError(message) {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('error').style.display = 'block';
+            document.getElementById('error-text').textContent = message;
+        }
+        
+        // Service Worker対応チェック
+        if (!('serviceWorker' in navigator)) {
+            showError('このブラウザはService Workerに対応していません。最新のブラウザをご利用ください。');
+        }
+    </script>
+</body>
+</html>
