@@ -3,48 +3,31 @@
 
 seeds:
   - url: https://hidemiyoshi.jp/blog/
-    depth: 5  # ページネーションを辿るため深さを増やす
+    depth: 5
 
 scopeType: prefix
-scopeIncludePrefix:
-  - https://hidemiyoshi.jp/blog/
-
-# 除外パターン（最小限に）
-exclude:
-  - .*\/wp-admin\/.*
-  - .*\/wp-login\.php
-  - .*\/feed\/.*
-  - .*\?s=.*
-  - .*\/wp-json\/.*
 
 # クロール設定
 workers: 1
 pageLoadTimeout: 60000
-pageExtraDelay: 3000  # 画像読み込み待機
-waitUntil: networkidle0  # すべてのリソース読み込み待機
-networkIdleWait: 3000
+pageExtraDelay: 3000
 
 # ビヘイビア
 behaviors:
   - autoscroll
-  - autoplay
-behaviorTimeout: 90000
-scrollDelay: 1500  # スクロール速度を遅く
 
 # ブラウザ設定
 userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
 lang: ja-JP
 
 # 画像とリソース取得
-extraHops: 1  # 外部ドメインのリソースも1ホップ取得
-blockRules: []  # ブロックルールなし
+extraHops: 1
 
 # 出力設定
 generateWACZ: true
 text: true
 screenshot: fullPage
-screenshotDelay: 3000
 
 # テスト用制限
-limit: 20  # 20ページまで（ページネーション確認用）
+limit: 20
 maxPageLimit: 20

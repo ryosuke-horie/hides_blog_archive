@@ -14,6 +14,7 @@ services:
       - PAGE_TIMEOUT=30
       - CRAWL_LIMIT=10
       - MAX_PAGE_LIMIT=10
+      - HOME=/tmp
     command: >
       --url https://hidemiyoshi.jp/blog/
       --collection test_hides_blog

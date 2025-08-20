@@ -1,5 +1,4 @@
 # browsertrix-crawlerのDockerイメージを使用
-# 最新の安定版を使用
 FROM webrecorder/browsertrix-crawler:latest
 
 # 作業ディレクトリの設定
@@ -13,8 +12,8 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# crawlerユーザーに戻す（browsertrix-crawlerのデフォルトユーザー）
-USER 33
+# crawlerユーザーで実行
+USER crawler
 
 # デフォルトのエントリーポイントを使用
 ENTRYPOINT ["crawl"]
