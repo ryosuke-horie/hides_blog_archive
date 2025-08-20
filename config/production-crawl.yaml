@@ -29,9 +29,9 @@ exclude:
 # クロール設定
 workers: 2  # 並列実行
 pageLoadTimeout: 90000
-pageExtraDelay: 2000
-waitUntil: networkidle2
-networkIdleWait: 2000
+pageExtraDelay: 3000  # ページ読み込み後の待機時間を増やす
+waitUntil: networkidle0  # より厳密な待機条件
+networkIdleWait: 3000
 
 # ビヘイビア
 behaviors:

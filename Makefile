@@ -57,6 +57,14 @@ quick-test: setup
 		--screenshot fullPage
 	@echo "✅ クイックテスト完了"
 
+# 改善版テストクロール（ページネーション・画像対応）
+test-improved: setup
+	@echo "🔬 改善版テストクロール（20ページ、ページネーション対応）..."
+	docker-compose -f docker-compose.test.yml run --rm crawler-test \
+		--config /config/test-crawl-improved.yaml \
+		--collection test_improved
+	@echo "✅ 改善版テストクロール完了"
+
 # クロールの停止
 stop:
 	@echo "⏹️ クロールを停止中..."
