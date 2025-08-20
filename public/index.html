@@ -204,36 +204,29 @@
     </div>
     
     <!-- ReplayWeb.page UI -->
-    <script src="https://cdn.jsdelivr.net/npm/replaywebpage@1.8.15/ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/replaywebpage@2.0.0/ui.js"></script>
     
     <script>
-        // WACZファイルのパス（実際のデプロイ時に調整）
+        // WACZファイルのパス
         const waczUrl = './archives/hides_blog_full.wacz';
         
         // ReplayWeb.pageの初期化
-        window.addEventListener('load', async () => {
+        window.addEventListener('DOMContentLoaded', async () => {
             const loadingEl = document.getElementById('loading');
             const replayContainer = document.getElementById('replay-container');
             const errorEl = document.getElementById('error');
             const errorTextEl = document.getElementById('error-text');
             
             try {
-                // ReplayWeb.pageの設定
-                const config = {
-                    source: waczUrl,
-                    embed: 'full',
-                    showSettings: true,
-                    showAbout: true,
-                    swError: (err) => {
-                        console.error('Service Worker Error:', err);
-                        showError('Service Workerの初期化に失敗しました。');
-                    }
-                };
+                // Service Worker対応チェック
+                if (!('serviceWorker' in navigator)) {
+                    throw new Error('このブラウザはService Workerに対応していません。');
+                }
                 
                 // WACZファイルの存在確認
                 const response = await fetch(waczUrl, { method: 'HEAD' });
                 if (!response.ok) {
-                    throw new Error('WACZファイルが見つかりません');
+                    console.warn('WACZファイルチェックスキップ（HEADメソッドが使えない場合）');
                 }
                 
                 // ReplayWeb UIの初期化
@@ -243,9 +236,10 @@
                 // replay-web-pageコンポーネントを作成
                 const replayEl = document.createElement('replay-web-page');
                 replayEl.setAttribute('source', waczUrl);
-                replayEl.setAttribute('embed', 'full');
+                replayEl.setAttribute('embed', 'default');
+                replayEl.setAttribute('replayBase', './replay/');
                 replayEl.style.width = '100%';
-                replayEl.style.height = '100vh';
+                replayEl.style.height = '80vh';
                 
                 replayContainer.appendChild(replayEl);
                 
@@ -262,11 +256,6 @@
             document.getElementById('loading').style.display = 'none';
             document.getElementById('error').style.display = 'block';
             document.getElementById('error-text').textContent = message;
-        }
-        
-        // Service Worker対応チェック
-        if (!('serviceWorker' in navigator)) {
-            showError('このブラウザはService Workerに対応していません。最新のブラウザをご利用ください。');
         }
     </script>
 </body>

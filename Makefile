@@ -101,3 +101,16 @@ check-config:
 	@echo "⚙️ 現在の設定:"
 	@echo "-------------------"
 	@cat .env
+
+# 開発サーバー起動（Range Request対応）
+serve: setup
+	@echo "🌐 開発サーバーを起動（Range Request対応）..."
+	@./scripts/prepare_deploy.sh
+	@echo ""
+	@echo "📡 サーバー起動中..."
+	@python3 scripts/dev_server.py
+
+# デプロイ準備
+deploy-prepare: setup
+	@echo "📦 デプロイ準備..."
+	@./scripts/prepare_deploy.sh
