@@ -1,0 +1,39 @@
+# テストクロール用設定
+# 10ページ制限でテスト実行
+
+seeds:
+  - url: https://hidemiyoshi.jp/blog/
+    depth: 3  # 浅めに設定
+
+scopeType: prefix
+scopeIncludePrefix:
+  - https://hidemiyoshi.jp/blog/
+
+# 除外パターン
+exclude:
+  - .*\/wp-admin\/.*
+  - .*\/wp-login\.php
+  - .*\/feed\/.*
+  - .*#comment.*
+  - .*#respond.*
+  - .*\?s=.*
+
+# クロール設定
+workers: 1  # テスト時は1ワーカー
+pageLoadTimeout: 30000  # 30秒
+waitUntil: networkidle2
+behaviors:
+  - autoscroll
+
+# ブラウザ設定
+userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+lang: ja-JP
+
+# 出力設定
+generateWACZ: true
+text: true
+screenshot: fullPage
+
+# 制限設定（重要）
+limit: 10  # 10ページまで
+maxPageLimit: 10
