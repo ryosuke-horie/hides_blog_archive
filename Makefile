@@ -27,9 +27,15 @@ build:
 # フルクロールの実行
 crawl: setup
 	@echo "🕷️ フルクロールを開始..."
-	@echo "URL: ${TARGET_URL}"
-	docker-compose up
-	@echo "✅ クロール完了"
+	@echo "URL: https://hidemiyoshi.jp/blog/"
+	@echo "⚠️ 警告: これは全440記事をクロールします。時間がかかります。"
+	@read -p "続行しますか？ [y/N]: " confirm && \
+	if [ "$$confirm" = "y" ] || [ "$$confirm" = "Y" ]; then \
+		docker-compose -f docker-compose.prod.yml up; \
+		echo "✅ クロール完了"; \
+	else \
+		echo "❌ クロールをキャンセルしました"; \
+	fi
 
 # テストクロール（10ページ制限）
 test-crawl: setup
