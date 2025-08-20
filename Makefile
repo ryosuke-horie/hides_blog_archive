@@ -34,9 +34,22 @@ crawl: setup
 # テストクロール（10ページ制限）
 test-crawl: setup
 	@echo "🧪 テストクロールを開始（10ページ制限）..."
-	@echo "URL: ${TARGET_URL}"
-	CRAWL_LIMIT=10 docker-compose up
+	@echo "URL: https://hidemiyoshi.jp/blog/"
+	docker-compose -f docker-compose.test.yml up
 	@echo "✅ テストクロール完了"
+
+# クイックテスト（設定ファイル使用）
+quick-test: setup
+	@echo "⚡ クイックテスト（3ページ）..."
+	docker-compose -f docker-compose.test.yml run --rm crawler-test \
+		--url https://hidemiyoshi.jp/blog/ \
+		--collection quick_test \
+		--generateWACZ \
+		--limit 3 \
+		--workers 1 \
+		--behaviors autoscroll \
+		--screenshot fullPage
+	@echo "✅ クイックテスト完了"
 
 # クロールの停止
 stop:
