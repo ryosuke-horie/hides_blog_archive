@@ -27,6 +27,6 @@
 
 ## 📌 現在の状態
 
-- **ミラーサイト**: `simple_mirror/` 488MB（動作確認済み）
-- **デプロイコマンド**: `npx wrangler pages deploy simple_mirror --project-name=hides-blog`
+- **ミラーサイト**: `simple_mirror/` 488MB（動作確認済み、582記事）
+- **デプロイコマンド**: `npx wrangler pages deploy simple_mirror --project-name=hides-blog-static`
 - **ローカルテスト**: `cd simple_mirror && python3 -m http.server 8000`

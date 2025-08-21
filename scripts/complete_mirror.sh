@@ -54,13 +54,14 @@ perform_mirror() {
         --directory-prefix="$OUTPUT_DIR" \
         --no-host-directories \
         --user-agent="$USER_AGENT" \
-        --reject="wp-admin*,wp-login*,wp-json*,xmlrpc*,*?*replytocom*,*?*share*,*?*like*,*/comment-page-*,*/trackback*,*/feed*,*/wp-*,*?p=*,*?s=*,*?author=*,*?tag=*,*?cat=*,*?m=*,*?year=*,*?monthnum=*,*?day=*,*?paged=*" \
-        --reject-regex=".*\?(replytocom|share|like|p|s|author|tag|cat|m|year|monthnum|day|paged)=.*" \
+        --reject="wp-admin*,wp-login*,wp-json*,xmlrpc*" \
         --wait=0.5 \
         --random-wait \
         --limit-rate=200k \
         --tries=3 \
         --timeout=30 \
+        --recursive \
+        --level=inf \
         "$SOURCE_URL" 2>&1 | while read line; do
             if [[ $line == *"Saving to:"* ]]; then
                 echo -e "${GREEN}[DL]${NC} ${line#*Saving to: }"
