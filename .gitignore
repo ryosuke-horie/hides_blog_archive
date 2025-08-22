@@ -4,6 +4,10 @@
 # アーカイブディレクトリ
 archive/
 
+# ミラーバックアップ
+simple_mirror_backup_*
+simple_mirror_backup_[0-9]*_[0-9]*
+
 # macOS
 .DS_Store
 **/.DS_Store

@@ -23,12 +23,13 @@ git clone https://github.com/ryosuke-horie/hides_blog_archive.git
 cd hides_blog_archive
 ```
 
-### 2. ミラーサイトの利用
+### 2. ミラーサイトの確認
 
-現在、`simple_mirror/` ディレクトリに完全なミラーサイトが用意されています：
-- 総ファイル数: 3,750
+`simple_mirror/` ディレクトリに完全なミラーサイトが含まれています：
+- 総ファイル数: 3,750ファイル
 - HTMLファイル: 582記事
 - 合計サイズ: 488MB
+- 期間: 2011年〜2025年の全記事
 
 ### 3. ローカルテスト
 

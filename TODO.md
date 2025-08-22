@@ -6,13 +6,10 @@
 - [ ] Cloudflare Pagesへの本番デプロイ実施
 - [ ] デプロイ後の動作確認（全ページアクセステスト）
 
-### デプロイ後
-- [ ] カスタムドメイン設定（必要に応じて）
-- [ ] GitHub Actions自動デプロイ設定
-- [ ] アクセス解析の設定
+### デプロイ完了後
+- [ ] mirror_blog.shスクリプトを削除（リリース後は不要）
 
-### 将来的な改善
-- [ ] 定期的なコンテンツ更新の自動化
+### 将来的な改善  
 - [ ] 画像最適化（WebP変換）
 - [ ] ページ読み込み速度の測定と改善
 
@@ -24,9 +21,13 @@
 - プロジェクト整理
 - ドキュメント整理
 - .DS_Store対策
+- simple_mirrorディレクトリに統一（complete_mirror削除）
+- ドキュメントをsimple_mirror使用に完全統一
+- complete_mirror.shスクリプト削除
 
 ## 📌 現在の状態
 
 - **ミラーサイト**: `simple_mirror/` 488MB（動作確認済み、582記事）
+- **ミラーリングスクリプト**: `./scripts/mirror_blog.sh`（リリースまでの更新用）
 - **デプロイコマンド**: `npx wrangler pages deploy simple_mirror --project-name=hides-blog-static`
 - **ローカルテスト**: `cd simple_mirror && python3 -m http.server 8000`

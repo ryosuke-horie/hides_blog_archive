@@ -5,10 +5,10 @@
 ### 1. ミラーサイトの確認
 
 ```bash
-# simple_mirrorディレクトリに既にミラーリング済みのサイトが含まれています
+# simple_mirrorディレクトリに完全なミラーサイトが含まれています
 ls -la simple_mirror/
-# 総ファイル数: 3750+
-# HTMLファイル: 580+
+# 総ファイル数: 3,750ファイル
+# HTMLファイル: 582記事
 # 合計サイズ: 488MB
 ```
 
@@ -29,19 +29,15 @@ python3 -m http.server 8000
 # - 日本語記事タイトルのリンク動作
 ```
 
-### 3. ミラーサイトの最終調整
+### 3. デプロイ前の最終確認
 
 ```bash
 # 元のディレクトリに戻る
 cd ..
 
-# 不要なファイルがないか確認
-find simple_mirror -name "*.php" -o -name ".htaccess" | wc -l
-# → 0 であることを確認
-
 # サイズ確認
 du -sh simple_mirror
-# → 500MB以下であることを確認
+# → 488MB（Cloudflare Pagesの無料枠500MB以内）
 ```
 
 ## 🚀 Cloudflare Pagesへデプロイ
