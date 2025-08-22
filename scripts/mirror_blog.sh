@@ -47,24 +47,28 @@ perform_mirror() {
     log_info "WordPressブログのミラーリングを開始..."
     log_info "注: 全記事の取得には30-60分程度かかります"
     
-    # wgetでミラーリング（既存のsimple_mirrorと同じ設定）
+    # wgetでミラーリング（クエリパラメーター対策版）
     wget \
         --recursive \
-        --level=inf \
+        --level=0 \
         --no-clobber \
         --page-requisites \
-        --html-extension \
+        --adjust-extension \
         --convert-links \
         --no-parent \
         --directory-prefix="$OUTPUT_DIR" \
         --no-host-directories \
         --user-agent="$USER_AGENT" \
-        --reject="wp-admin*,wp-login*,wp-json*,xmlrpc*,*?replytocom*" \
+        --domains=hidemiyoshi.jp \
+        --follow-tags=a,area \
+        --accept-regex='https?://hidemiyoshi\.jp/blog/((page/[0-9]+/)|(category/[^/]+/)|(tag/[^/]+/)|([0-9]{4}/[0-9]{2}/([0-9]{2}/)?)|[^?#]+\.html)' \
+        --reject-regex='[?&](p|replytocom)=' \
         --wait=0.5 \
         --random-wait \
         --limit-rate=300k \
         --tries=3 \
         --timeout=30 \
+        --compression=auto \
         -e robots=off \
         "$SOURCE_URL"
     
@@ -197,15 +201,18 @@ main() {
     echo ""
     
     # 確認プロンプト
-    read -p "既存のミラーをバックアップして新規取得しますか？ (y/n): " -n 1 -r
+    read -p "新規取得を開始しますか？ (y/n): " -n 1 -r
     echo ""
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
         log_info "キャンセルしました"
         exit 0
     fi
     
-    # 既存ディレクトリのバックアップ
-    backup_existing
+    # 既存ディレクトリがあれば削除（バックアップは取らない）
+    if [ -d "$OUTPUT_DIR" ]; then
+        log_info "既存のディレクトリを削除中..."
+        rm -rf "$OUTPUT_DIR"
+    fi
     
     # ミラーリング実行
     perform_mirror
