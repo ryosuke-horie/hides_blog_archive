@@ -155,6 +155,38 @@ fix_relative_paths() {
     log_info "相対パス修正完了"
 }
 
+# 壊れたリンクの修正（後処理）
+fix_broken_links() {
+    log_info "壊れたリンクを修正中..."
+    
+    # index.html?p=XXX 形式のリンクを修正
+    find "$OUTPUT_DIR" -name "*.html" -type f | while read -r file; do
+        # index.html%3Fp= または index.html?p= 形式のリンクを検出して修正
+        # これらは実際には記事ページへのリンクなので、適切なパスに変換
+        
+        # 一時ファイルを作成
+        temp_file="${file}.tmp"
+        
+        # sedで問題のあるパターンを修正
+        # index.html?p=XXX または index.html%3Fp=XXX を index.html に変換
+        sed -E 's|href="([^"]*/)?(index\.html(%3F|[?])p=[0-9]+)"|href="\1index.html"|g' "$file" > "$temp_file"
+        
+        # 変更があった場合のみファイルを更新
+        if ! cmp -s "$file" "$temp_file"; then
+            mv "$temp_file" "$file"
+            echo "  修正: $(basename "$file")"
+        else
+            rm "$temp_file"
+        fi
+    done
+    
+    # ?p=XXX.html 形式のファイルが存在する場合は削除
+    find "$OUTPUT_DIR" -name "*\?p=*.html" -type f -delete 2>/dev/null || true
+    find "$OUTPUT_DIR" -name "*%3Fp=*.html" -type f -delete 2>/dev/null || true
+    
+    log_info "リンク修正完了"
+}
+
 # 不要なファイルのクリーンアップ
 cleanup_unnecessary() {
     log_info "不要なファイルをクリーンアップ中..."
@@ -220,6 +252,7 @@ main() {
     # 各種修正処理
     fix_filenames
     fix_relative_paths
+    fix_broken_links
     cleanup_unnecessary
     
     # 統計情報表示
